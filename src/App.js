@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./App.css";
-// import About from "./components/About";
+import About from "./components/About";
 import Navbar from "./components/Navbar";
 import TexthtmlForm from "./components/TextForm";
 import Alert from "./components/Alert";
-// import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
   const [Mode, setMode] = useState("light"); //Whether dark mode is enabled or not
@@ -26,7 +26,7 @@ function App() {
       setMode("dark");
       document.body.style.backgroundColor = "#2e3f60";
       showAlert("Dark mode has been enabled", "Success:");
-      document.title = "textutils - Dark Mode";
+      // document.title = "textutils - Dark Mode";
       // setInterval(() => {
       //   document.title = "textutils is Amazing Mode";
       // }, 2000);
@@ -37,28 +37,29 @@ function App() {
       setMode("light");
       document.body.style.backgroundColor = "white";
       showAlert("Light mode has been enabled", "Success:");
-      document.title = "textutils - light Mode";
+      // document.title = "textutils - light Mode";
     }
   };
   return (
     <>
       {/* <Navbar title = "Textutils" aboutText = "About TextUitls"/> */}
       {/* <Navbar/> */}
-      {/* <Router>
-        /user --> Component 1 
-            /user/home --> Component 2 
-          <Switch>
-            <Route exact path="/about"><About /></Route> 
-            <Route exact path="/">
-              </Route>
-          </Switch>
-      </Router> */}
+      {/* /user --> Component 1 
+            /user/home --> Component 2  */}
 
-      <Navbar title="Textutils" mode={Mode} toggleMode={toggleMode} />
-      <Alert alert={alert} />
-      <div className="container my-3">
-        <TexthtmlForm showAlert={showAlert} heading="Enter the text to analyze below" mode={Mode} />
-      </div>
+
+      <Router>
+        <Navbar title="Textutils" mode={Mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <div className="container my-3">
+          <Switch>
+            <Route exact path="/about"><About mode={Mode} /></Route>
+            <Route exact path="/">
+              <TexthtmlForm showAlert={showAlert} heading="Try Textutils - Word Counter, Character Counter, Underline Sentence" mode={Mode} />
+            </Route>
+          </Switch>
+        </div>
+      </Router >
     </>
   );
 }

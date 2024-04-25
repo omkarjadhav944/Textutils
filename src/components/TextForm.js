@@ -28,7 +28,7 @@ export default function TextForm(props) {
         textDecoration: "underline",
       });
       setBtn("Underline");
-    props.showAlert("Your text is now Underline", "success: ");
+      props.showAlert("Your text is now Underline", "success: ");
 
     } else {
       setFont({
@@ -50,7 +50,7 @@ export default function TextForm(props) {
         fontStyle: "italic",
       });
       setBtnText("Normal");
-    props.showAlert("Your text is converted in italic", "success: ");
+      props.showAlert("Your text is converted in italic", "success: ");
 
     } else {
       setFont({
@@ -73,7 +73,8 @@ export default function TextForm(props) {
   // setText("new text")  // correct way to change the text
   return (
     <>
-      <h1>{props.heading} </h1>
+              
+      <h1 className="mb-4" style={{color: props.mode === 'dark'?'white':'black'}} >{props.heading} </h1>
       <div
         className="container"
         style={{
@@ -86,7 +87,7 @@ export default function TextForm(props) {
           style={{
             fontStyle: font.fontStyle,
             textDecoration: Underline.textDecoration,
-            backgroundColor: props.mode === "dark" ? "grey" : "white",
+            backgroundColor: props.mode === "dark" ? "#3b64a0" : "white",
             color: props.mode === "dark" ? "white" : "black",
           }}
           className="form-control"
@@ -96,17 +97,17 @@ export default function TextForm(props) {
           rows="8"
         ></textarea>
       </div>
-      <button className="btn btn-primary" onClick={handleupClick}>
+      <button disabled={text.length===0} className="btn btn-primary mx-3 my-1" onClick={handleupClick}>
         convert to UpperCase
       </button>
-      <button className="btn btn-primary mx-3" onClick={handleloClick}>
+      <button disabled={text.length===0} className="btn btn-primary mx-3 my-1" onClick={handleloClick}>
         convert to LowerCase
       </button>
 
-      <button className="btn btn-primary mx-3" onClick={italic}>
+      <button disabled={text.length===0} className="btn btn-primary mx-3 my-1" onClick={italic}>
         {btntext}
       </button>
-      <button className="btn btn-primary mx-3" onClick={under}>
+      <button disabled={text.length===0} className="btn btn-primary mx-3 my-1" onClick={under}>
         {btn}
       </button>
 
@@ -119,12 +120,12 @@ export default function TextForm(props) {
       >
         <h2>Your Text Summary</h2>
         <p>
-          {text.split(` `).length} words and {text.length} characters
+          {text.split(` `).filter((element) => { return element.length !== 0 }).length} words and {text.length} characters
         </p>
-        <p>{0.008 * text.split(` `).length} Minutes read</p>
+        <p>{0.008 * text.split(` `).filter((element) => { return element.length !== 0 }).length} Minutes read</p>
         <h2>Preview</h2>
         <p>
-          {text.length > 0 ? text : "Enter something in the textbox to preview"}
+          {text.length > 0 ? text : "Nothing to preview"}
         </p>
       </div>
     </>

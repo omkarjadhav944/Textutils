@@ -54,7 +54,7 @@ function App() {
         <div className="container my-3">
           <Switch>
             <Route exact path="/about"><About mode={Mode} /></Route>
-            <Route exact path="/">
+            <Route exact path="/home">
               <TexthtmlForm showAlert={showAlert} heading="Try Textutils - Word Counter, Character Counter, Underline Sentence" mode={Mode} />
             </Route>
           </Switch>

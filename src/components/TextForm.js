@@ -64,17 +64,15 @@ export default function TextForm(props) {
 
   //to change value inside box we require to use onchange
   const handleonchange = (event) => {
-    // console.log("on change")
     setText(event.target.value); //to change value inside box we require to use onchange
   };
 
   const [text, setText] = useState("");
-  //   text = "new text" // wrong way to change the text
-  // setText("new text")  // correct way to change the text
+
   return (
     <>
-              
-      <h1 className="mb-4" style={{color: props.mode === 'dark'?'white':'black'}} >{props.heading} </h1>
+
+      <h1 className="mb-4" style={{ color: props.mode === 'dark' ? 'white' : 'black' }} >{props.heading} </h1>
       <div
         className="container"
         style={{
@@ -97,17 +95,17 @@ export default function TextForm(props) {
           rows="8"
         ></textarea>
       </div>
-      <button disabled={text.length===0} className="btn btn-primary mx-3 my-1" onClick={handleupClick}>
+      <button disabled={text.length === 0} className="btn btn-primary mx-3 my-1" onClick={handleupClick}>
         convert to UpperCase
       </button>
-      <button disabled={text.length===0} className="btn btn-primary mx-3 my-1" onClick={handleloClick}>
+      <button disabled={text.length === 0} className="btn btn-primary mx-3 my-1" onClick={handleloClick}>
         convert to LowerCase
       </button>
 
-      <button disabled={text.length===0} className="btn btn-primary mx-3 my-1" onClick={italic}>
+      <button disabled={text.length === 0} className="btn btn-primary mx-3 my-1" onClick={italic}>
         {btntext}
       </button>
-      <button disabled={text.length===0} className="btn btn-primary mx-3 my-1" onClick={under}>
+      <button disabled={text.length === 0} className="btn btn-primary mx-3 my-1" onClick={under}>
         {btn}
       </button>
 
@@ -120,9 +118,9 @@ export default function TextForm(props) {
       >
         <h2>Your Text Summary</h2>
         <p>
-          {text.split(` `).filter((element) => { return element.length !== 0 }).length} words and {text.length} characters
+          {text.split(/\s+/).filter((element) => { return element.length !== 0 }).length} words and {text.length} characters
         </p>
-        <p>{0.008 * text.split(` `).filter((element) => { return element.length !== 0 }).length} Minutes read</p>
+        <p>{0.008 * text.split(/\s+/).filter((element) => { return element.length !== 0 }).length} Minutes read</p>
         <h2>Preview</h2>
         <p>
           {text.length > 0 ? text : "Nothing to preview"}
